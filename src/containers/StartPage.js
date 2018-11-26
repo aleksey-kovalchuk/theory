@@ -12,8 +12,6 @@ class StartPage extends Component {
     return (
       <Wrap>
         <div><Link to="/async">Асинхронное программирование</Link></div>
-        <div><Link to="/about/">about</Link></div>
-        <div><Link to="/users/">users</Link></div>
         <div><Link to="/funcprog">FUNC</Link></div>
       </Wrap>
     );

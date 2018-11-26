@@ -16,17 +16,11 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const About = () => <h2>About</h2>;
-const Users = () => <h2>Users</h2>;
-
-
 const AppRouter = () => (
   <Wrap>
     <Container>
       <Route path="/" exact component={StartPage} />
       <Route path="/async" exact component={AsyncPage} />
-      <Route path="/about/" component={About} />
-      <Route path="/users/" component={Users} />
       <Route path="/funcprog/" component={FuncProg} />
     </Container>
   </Wrap>
