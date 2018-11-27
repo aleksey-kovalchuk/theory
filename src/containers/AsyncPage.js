@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -21,7 +21,7 @@ const StyledSyntaxHighlighter = styled(SyntaxHighlighter)`
   font-size: 14px;
 `;
 
-class AsyncPage extends Component {
+class AsyncPage extends PureComponent {
 
   render () {
 
@@ -148,6 +148,116 @@ class AsyncPage extends Component {
     // но не с успешным результатом, а с ошибкой error
     `;
 
+    const codeString8 = `
+    let promise = fetch(url[, options]);
+    `;
+
+    const codeString9 = `
+    const url = 'https://randomuser.me/api';
+    
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('X-Custom-Header', 'ProcessThisImmediately');
+    
+    let data = {
+        name: 'Sara'
+    } 
+    
+    let fetchData = { 
+        method: 'POST', 
+        body: data,
+        headers: myHeaders
+    }
+    
+    fetch(url, fetchData)
+    .then((response) => {
+      // Объект response можно прочитать в разных форматах
+      // response.arrayBuffer()
+      // response.blob()
+      // response.formData()
+      // response.json()
+      // response.text()
+      // эти вызовы возвращают промис
+    })
+    .then(function(res) {
+        // Здесь мы имеем результат операции например response.json()
+    })
+    .catch( alert );
+    `;
+
+    const codeString10 = `
+    // unicorn возвращает промис
+    // getRainbow возвращает промис
+    // в rainbow записывается результат промиса
+    async function unicorn() {
+      try {
+        let rainbow = await getRainbow();
+        return rainbow.data.colors;
+      } catch(e) {
+        return {
+          message: e.data.message,
+          someText: 'Custom error message'
+        }
+      }
+    }
+    `;
+
+    const codeString11 = `
+    async function unicorn() {
+      let [rainbow, food] = await Promise.all([getRainbow(), getFood()]);
+      return {rainbow, food}
+    }
+    `;
+
+    const codeString12 = `
+    async function getAllUnicorns(names) {
+      return await Promise.all(names.map(async function(name) {
+        var unicorn = await getUnicorn(name);
+        return unicorn;
+      }));
+    }
+    `;
+
+    const codeString13 = `
+    async function throwsValue() {
+      throw new Error('oops');
+    }
+
+    throwsValue()
+    .then((resolve) => {
+      console.log('resolve:' + resolve);
+    })
+    .catch((reject) => {
+      console.log('reject:' + reject);
+    });
+    //prints 'reject:Error: oops'
+    `;
+
+    const codeString14 = `
+    async getPost = () => {
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+      const data = await response.json();
+      console.log(data);
+    }
+    `;
+
+    const codeString15 = `
+    const load = async () => {
+      const a = await Promise.resolve(5);
+      const b = await Promise.resolve(10);
+      return a + b;
+    };
+    load().then(value => console.log(value)); // 15
+    `;
+
+    const codeString16 = `
+    function* generatorCreator () {
+      const response = yield fetch('https://jsonplaceholder.typicode.com/posts/1'); 
+      const data = yield response.json();
+      console.log(data);
+    }
+    `;
+
     return (
       <div>
         <Head>Асинхронное программирование</Head>
@@ -221,7 +331,6 @@ class AsyncPage extends Component {
         </StyledSyntaxHighlighter>
 
         <br/>
-
         <SubHead>Параллельное выполнение Promise.all</SubHead>
 
         <p>
@@ -245,6 +354,104 @@ class AsyncPage extends Component {
         <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
           { codeString7 }
         </StyledSyntaxHighlighter>
+
+        <br/>
+        <SubHead>Fetch</SubHead>
+
+        <p>Метод <b>fetch</b> – это XMLHttpRequest нового поколения.</p>
+        <p>Если передаем только url - по умолчанию выполняется GET запрос</p>
+
+        <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+          { codeString8 }
+        </StyledSyntaxHighlighter>
+
+        <p>
+          url – URL, на который сделать запрос,
+          options – необязательный объект с настройками запроса.
+        </p>
+        <p>
+          Свойства options:<br/>
+          <b>method</b> – метод запроса,<br/>
+          <b>headers</b> – заголовки запроса (объект),<br/>
+          <b>body</b> – тело запроса: FormData, Blob, строка и т.п.<br/>
+          <b>mode</b> – одно из: «same-origin», «no-cors», «cors», указывает, в каком режиме кросс-доменности предполагается делать запрос.<br/>
+          <b>credentials</b> – одно из: «omit», «same-origin», «include», указывает, пересылать ли куки и заголовки авторизации вместе с запросом.<br/>
+          <b>cache</b> – одно из «default», «no-store», «reload», «no-cache», «force-cache», «only-if-cached», указывает, как кешировать запрос.<br/>
+          <b>redirect</b> – можно поставить «follow» для обычного поведения при коде 30x (следовать редиректу) или «error» для интерпретации редиректа как ошибки.<br/>
+        </p>
+
+        <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+          { codeString9 }
+        </StyledSyntaxHighlighter>
+
+        <br/>
+        <SubHead>ASYNC / AWAIT</SubHead>
+
+        <p>
+          Говоря общедоступным языком <b>async/await</b> — это <b>Promise</b>.<br/>
+          Когда вы объявляете функцию как асинхронную, через волшебное слово <b>async</b>,
+          вы говорите, что данная функция возвращает <b>Promise</b>. Каждая вещь которую вы ожидаете
+          внутри этой функции, используя волшебное слово <b>await</b>, то же возвращает <b>Promise</b>.
+        </p>
+
+        <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+          { codeString10 }
+        </StyledSyntaxHighlighter>
+
+        <p>
+          Код следующий после <b>await</b>, продолжает свое выполнение только тогда, когда функция используемая с
+          await вернет <b>resolve</b> или <b>reject</b>
+        </p>
+
+        <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+          { codeString11 }
+        </StyledSyntaxHighlighter>
+
+        <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+          { codeString12 }
+        </StyledSyntaxHighlighter>
+
+        <p>Когда функция async выбрасывает исключение</p>
+
+        <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+          { codeString13 }
+        </StyledSyntaxHighlighter>
+
+        <p>Использование вместе с fetch</p>
+
+        <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+          { codeString14 }
+        </StyledSyntaxHighlighter>
+
+        <p>Использование async/await очень похоже на то, как мы работаем с генераторами:</p>
+
+        <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+          { codeString15 }
+        </StyledSyntaxHighlighter>
+
+        <p>
+          Async/Await действительно позволяет писать асинхронный код синхронно, не блокируя стек вызовов.
+          Мы замораживаем код и ждем пока выполнится промис, а затем продолжаем.
+        </p>
+
+
+        <br/>
+        <SubHead>Генераторы</SubHead>
+
+        <p>
+          Функция генератор сама по себе не выполняется, она лишь создает специальный итерируемый объект знающий
+          о своем состоянии. Этот объект имеет метод <b>next()</b> который позволяет запускать выполнение функции до
+          ключевого слова <b>yield</b>. Инструкция <b>yield</b>, на мой взгляд, похожа на return, возвращает промежуточный
+          результат и приостанавливает выполнение кода.
+        </p>
+
+        <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+          { codeString16 }
+        </StyledSyntaxHighlighter>
+
+        
+        {/* TODO: Observables RxJS*/}
+
 
       </div>
     );
