@@ -7,12 +7,25 @@ const Wrap = styled.div`
   padding: 50px;
 `;
 
+const StyledLink = styled(Link)`
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  margin-bottom: 2px;
+  color: #333333;
+  border-radius: 2px;
+  &:hover {
+    background: rgba(0,0,0,0.1);
+  }
+`;
+
+
 class StartPage extends Component {
   render () {
     return (
       <Wrap>
-        <div><Link to="/async">Асинхронное программирование</Link></div>
-        <div><Link to="/funcprog">FUNC</Link></div>
+        <StyledLink to="/async">Асинхронное программирование</StyledLink>
+        <StyledLink to="/tasks">Задачи на собеседовании</StyledLink>
       </Wrap>
     );
   }

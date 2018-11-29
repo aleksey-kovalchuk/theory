@@ -256,6 +256,18 @@ class AsyncPage extends PureComponent {
       const data = yield response.json();
       console.log(data);
     }
+    
+    let generator = generatorCreator();
+    `;
+
+    const codeString17 = `
+    co(function *() {
+      let post = yield Post.findById(10); // wait Promise resolve
+      let comments = yield post.getComments(); // wait Promise resolve
+      console.log(post, comments);
+    }).catch(function(err){
+      console.error(err);
+    });
     `;
 
     return (
@@ -439,6 +451,15 @@ class AsyncPage extends PureComponent {
         <SubHead>Генераторы</SubHead>
 
         <p>
+          Генераторы – новый вид функций в современном JavaScript. Они отличаются от обычных тем, что могут
+          приостанавливать своё выполнение, возвращать промежуточный результат и далее возобновлять его позже,
+          в произвольный момент времени.<br/>
+          Основным методом генератора является <b>next()</b>. При вызове он возобновляет выполнение кода до ближайшего
+          ключевого слова <b>yield</b>. По достижении yield выполнение приостанавливается, а значение – возвращается во
+          внешний код.
+        </p>
+
+        <p>
           Функция генератор сама по себе не выполняется, она лишь создает специальный итерируемый объект знающий
           о своем состоянии. Этот объект имеет метод <b>next()</b> который позволяет запускать выполнение функции до
           ключевого слова <b>yield</b>. Инструкция <b>yield</b>, на мой взгляд, похожа на return, возвращает промежуточный
@@ -449,7 +470,16 @@ class AsyncPage extends PureComponent {
           { codeString16 }
         </StyledSyntaxHighlighter>
 
-        
+        <p>
+          Генераторы используют разные библиотеки как замену async/await для работы с асинхронными операциями.
+          Например, библиотека CO:
+        </p>
+
+        <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+          { codeString17 }
+        </StyledSyntaxHighlighter>
+
+
         {/* TODO: Observables RxJS*/}
 
 

@@ -12,11 +12,23 @@ const Wrap = styled.div`
   background: #cccccc;
 `;
 
+const Inner = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+`;
+
+const StyledLink = styled(Link)`
+  color: #333333;
+  text-decoration: none;
+`;
+
 class NavBar extends Component {
   render () {
     return (
       <Wrap>
-        <span><Link to="/">Home</Link></span>
+        <Inner>
+          <StyledLink to="/">Home</StyledLink>
+        </Inner>
       </Wrap>
     );
   }

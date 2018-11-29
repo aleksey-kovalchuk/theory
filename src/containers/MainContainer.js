@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import FuncProg from './FuncProg.js';
 import StartPage from './StartPage';
 import AsyncPage from './AsyncPage';
+import TasksPage from './TasksPage'
 
 import styled from 'styled-components';
 
@@ -21,7 +21,7 @@ const AppRouter = () => (
     <Container>
       <Route path="/" exact component={StartPage} />
       <Route path="/async" exact component={AsyncPage} />
-      <Route path="/funcprog/" component={FuncProg} />
+      <Route path="/tasks/" component={TasksPage} />
     </Container>
   </Wrap>
 );
