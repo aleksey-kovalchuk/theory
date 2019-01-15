@@ -26,6 +26,8 @@ class StartPage extends Component {
       <Wrap>
         <StyledLink to="/async">Асинхронное программирование</StyledLink>
         <StyledLink to="/tasks">Задачи на собеседовании</StyledLink>
+        <StyledLink to="/react">React основы</StyledLink>
+        <StyledLink to="/redux">Redux основы</StyledLink>
       </Wrap>
     );
   }

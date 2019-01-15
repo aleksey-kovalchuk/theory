@@ -203,6 +203,79 @@ while(A.length > 0) {
 console.log(A);
 `;
 
+const task13 = `var user = {
+  name: 'Василий',
+  sayHi: function () {
+    console.log( '>>>>>>' + this.name + ' !' );
+  }
+};
+user.sayHi(); // sayHi в контексте user
+
+// с ипользованием стрелочной функции:
+(function() {
+  this.name = 'Толик';
+
+  var user = {
+    name: 'Василий',
+    sayHi: () => {
+      console.log( '>>>>>>' + this.name + ' !' );
+    }
+  };
+
+  user.sayHi(); // Толик в контексте самовызывающейся функции
+})();
+`;
+
+const task14 = `this.age = 10;
+
+function Person() {
+  // В конструкторе Person() "this" указывает на себя.
+  this.age = 0;
+
+  setTimeout(function growUp() {
+    // В нестрогом режиме, в функции growUp() "this" указывает 
+    // на глобальный объект, который отличается от "this",
+    // определяемом в конструкторе Person().
+    this.age++;
+    console.log('>>>>> ' + this.age); // 11
+  }, 1000);
+}
+
+var p = new Person();
+
+// Person(); - так было бы 1
+`;
+
+const task15 = `this.age = 10;
+
+function Person() {
+  this.age = 0;
+
+  var test = function() {
+    console.log(this.age); // 10 !!!
+  }
+
+  test();
+}
+
+var p = new Person();
+`;
+
+const task16 = `typeof undefined // "undefined"
+
+typeof 0 // "number"
+
+typeof true // "boolean"
+
+typeof "foo" // "string"
+
+typeof {} // "object"
+
+typeof null // "object" - это ошибка typeof но ее оставили для совместимости
+
+typeof function(){} // "function" - но на самом деле это объект
+`;
+
 export default function() {
   return (
     <div>
@@ -250,9 +323,21 @@ export default function() {
         { task12 }
       </StyledSyntaxHighlighter>
 
+      <SubHead>THIS</SubHead>
+      <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+        { task13 }
+      </StyledSyntaxHighlighter>
+      <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+        { task14 }
+      </StyledSyntaxHighlighter>
+      <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+        { task15 }
+      </StyledSyntaxHighlighter>
 
-
-
+      <SubHead>Other</SubHead>
+      <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+        { task16 }
+      </StyledSyntaxHighlighter>
     </div>
   );
 }
