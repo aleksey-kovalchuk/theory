@@ -5,6 +5,7 @@ import AsyncPage from './AsyncPage';
 import TasksPage from './TasksPage';
 import ReactPage from './ReactPage';
 import ReduxPage from './ReduxPage';
+import JsPage from './JsPage';
 
 import styled from 'styled-components';
 
@@ -26,6 +27,7 @@ const AppRouter = () => (
       <Route path="/tasks/" component={TasksPage} />
       <Route path="/react/" component={ReactPage} />
       <Route path="/redux/" component={ReduxPage} />
+      <Route path="/js/" component={JsPage} />
     </Container>
   </Wrap>
 );

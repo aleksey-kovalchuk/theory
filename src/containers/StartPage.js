@@ -28,6 +28,7 @@ class StartPage extends Component {
         <StyledLink to="/tasks">Задачи на собеседовании</StyledLink>
         <StyledLink to="/react">React основы</StyledLink>
         <StyledLink to="/redux">Redux основы</StyledLink>
+        <StyledLink to="/js">Javascript общие вопросы</StyledLink>
       </Wrap>
     );
   }
