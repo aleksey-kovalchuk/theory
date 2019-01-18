@@ -36,6 +36,23 @@ const code2 = `(function() {
 })(); 
 `;
 
+const code3 = `var myFunc = function(a, b, c) {
+  console.log(arguments.reverse()); // Здесь будет ошибка
+}
+
+// Чтобы сделать из arguments обычный массив:
+Array.prototype.slice.call(arguments);
+// Можно короче (но тут создается массив):
+[].slice.call(arguments);
+
+// Или
+const myFunc = function(...rest) {
+  rest.reverse();
+}
+
+Array.from(arguments).reverse();
+`;
+
 class JsPage extends Component {
   render () {
     return (
@@ -85,6 +102,15 @@ class JsPage extends Component {
           3. CommonJS<br/>
           4. ES6 Modules (import, export, export default)
         </p>
+
+        <SubHead>Псевдомассив Arguments</SubHead>
+        <p>
+          Это подобный массиву объект, который содержит аргументы, переданные в функцию. Попытка
+          вызвать на нем некоторые методы массива вызовет ошибку.
+        </p>
+        <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+          {code3}
+        </StyledSyntaxHighlighter>
 
       </div>
     );

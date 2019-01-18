@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Important from '../components/Important';
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/styles/prism';
@@ -280,6 +281,11 @@ export default function() {
   return (
     <div>
       <Head>Типичные задачи</Head>
+      <Important>
+        Решить задачу: Есть массив с четными и нечетными числами расположенными в
+        произвольных местах. Отсортировать только нечётные числа по возрастанию,
+        при этом четные числа должны остаться на своих местах!
+      </Important>
 
       <SubHead>Настраиваемые функции</SubHead>
       <StyledSyntaxHighlighter language='javascript' style={tomorrow}>

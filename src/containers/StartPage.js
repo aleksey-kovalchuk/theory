@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -19,16 +18,20 @@ const StyledLink = styled(Link)`
   }
 `;
 
-
 class StartPage extends Component {
   render () {
     return (
       <Wrap>
+        <StyledLink to="/common">Общие вопросы</StyledLink>
         <StyledLink to="/async">Асинхронное программирование</StyledLink>
         <StyledLink to="/tasks">Задачи на собеседовании</StyledLink>
         <StyledLink to="/react">React основы</StyledLink>
         <StyledLink to="/redux">Redux основы</StyledLink>
         <StyledLink to="/js">Javascript общие вопросы</StyledLink>
+        <StyledLink to="/proto">Javascript Наследование</StyledLink>
+        <StyledLink to="/scss">Scss</StyledLink>
+        <StyledLink to="/template">Шаблоны проектирования</StyledLink>
+        <StyledLink to="/solid">SOLID</StyledLink>
       </Wrap>
     );
   }
