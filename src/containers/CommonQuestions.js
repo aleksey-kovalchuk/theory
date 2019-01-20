@@ -42,11 +42,42 @@ var mainColor = rootStyles.getPropertyValue('--main-color');
 console.log(mainColor);
 `;
 
+const code2 = `<section>
+    <h2>...</h2>
+    <p>...</p>
+</section>
+
+<figure>
+  <img src="..." alt="...">
+  <figcaption>...</figcaption>
+</figure>
+
+<time>1957-10-04</time>
+`;
+
 class CommonQuestions extends Component {
   render () {
     return (
       <div>
         <Head>Общие вопросы</Head>
+
+        <SubHead>HTML5 новые теги</SubHead>
+        <p>
+          1. Header, footer, section, article, video, audio, progress, nav, meter, time,
+          aside, canvas<br/>
+          2. Новые значения атрибута <b>type</b><br/>
+          3. Новые атрибуты элементов: dragable, contenteditable, hidden, contextmenu, data-*, dropzone,
+          role, spellcheck[8] ...
+        </p>
+        <SubHead>Преимущества</SubHead>
+        <p>
+          Поисковые системы лучше индексируют сайт. Лучше работают речевые браузеры (для слепых).
+          Всё предназначено для роботов, интерпретирующих код.
+        </p>
+        <p><b>Header</b> - определяет шапку сайта или раздела</p>
+        <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
+          {code2}
+        </StyledSyntaxHighlighter>
 
         <SubHead>CSS переменные</SubHead>
         <StyledSyntaxHighlighter language='javascript' style={tomorrow}>

@@ -72,6 +72,12 @@ class ReactPage extends Component {
     return (
       <div>
         <Head>React</Head>
+        <p>
+          Это библиотека! Работа основана на концепте виртуального DOM. React содержит
+          виртуальный DOM в памяти и каждый раз, когда в него вносят изменения, быстро их
+          сравнивает с реальным DOM, сводит в одно обновление и посылает целый пакет
+          данных на настоящий DOM.
+        </p>
         <SubHead>Жизненный цикл компонентов</SubHead>
         <p>
           <Point>ComponentWillMount <Mark>(deprecated)</Mark></Point>

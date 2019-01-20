@@ -11,6 +11,9 @@ import ScssPage from './ScssPage';
 import TmplPage from './TmplPage';
 import CommonQuestions from './CommonQuestions';
 import SolidPage from './SolidPage';
+import WorkerPage from './WorkerPage';
+import ServerPage from './ServerPage';
+import ApiPage from './ApiPage';
 
 import styled from 'styled-components';
 
@@ -38,6 +41,9 @@ const AppRouter = () => (
       <Route path="/scss/" component={ScssPage} />
       <Route path="/template/" component={TmplPage} />
       <Route path="/solid/" component={SolidPage} />
+      <Route path="/worker/" component={WorkerPage} />
+      <Route path="/server/" component={ServerPage} />
+      <Route path="/api/" component={ApiPage} />
     </Container>
   </Wrap>
 );

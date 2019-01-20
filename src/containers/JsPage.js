@@ -1,25 +1,14 @@
 import React, { Component } from 'react';
-import Important from '../components/Important';
+import { tomorrow } from 'react-syntax-highlighter/styles/prism';
 import styled from 'styled-components';
 
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { tomorrow } from 'react-syntax-highlighter/styles/prism';
+import Important from '../components/Important';
+import { Head, SubHead, StyledSyntaxHighlighter } from '../components/shared';
+import loopImg from '../images/eventloop.png';
 
-const Head = styled.h1`
-  font-size: 26px;
-  font-weight: 600;
-`;
-
-const SubHead = styled.h2`
-  font-size: 20px;
-  font-weight: 600;
-`;
-
-const StyledSyntaxHighlighter = styled(SyntaxHighlighter)`
-  border-radius: 4px;
-  margin: 20px 0!important;
-  font-size: 14px;
-  padding: 20px!important;
+const Image = styled.img`
+  display: block;
+  max-width: 400px;
 `;
 
 const code1 = `sayHi.[[scope]] = window
@@ -58,6 +47,42 @@ class JsPage extends Component {
     return (
       <div>
         <Head>Javascript общие вопросы</Head>
+        <SubHead>Как работает Javascript</SubHead>
+        <p>
+          На движке V8 от google, js - однопоточный язык. Использует очередь функций
+          обратного вызова.
+        </p>
+        <Image src={loopImg} alt=""/>
+        <p>
+          Куча - место, где происходит выделение памяти.<br/>
+          Стек вызовов содержит стековые кадры.<br/>
+          Event loop - механизм, который поддерживает выполнение программы, вызывая JS движок.
+        </p>
+        <p>
+          JS - однопоточный язык. У него один стек вызовов, в один моментвремени он может только
+          одну какую-то задачу.<br/>
+          Пока в стеке вызовов имеется выполняющая функция - браузер не может выполнять другие
+          задачи (он заблокирован). Решение этой проблемы - асинхронные функции обратного вызова.
+        </p>
+        <p>
+          JS - движок - это программа (интерпретатор), выполняющий код JS.
+          V8 написан на C++. Внутри движка используется несколько потоков.
+        </p>
+        <p>
+          JS выделяет память когда нечто (объект, строка итд) создается и автоматически, когда
+          созданное больше не используется, освобождает её - это "очистка мусора".
+        </p>
+        <p>
+          Цикл событий (Event loop) наблюдает за стеком вызовов и очередью колбеков (callback queue)
+          и если стек вызовов пуст - он берет первое событие из очереди колбеков и помещает его в стек,
+          что приводит к запуску этого события.
+        </p>
+        <p>
+          Куча - это специализированная структура данных типа дерево, которая удовлетворяет
+          свойству кучи: если В является узлом-потомком узла А, то ключ(А) >= ключ(В). Элемент
+          с наибольшим ключем всегда является корневым узлом кучи. Куча используется для
+          эффективной реализации очереди с приоритетом.
+        </p>
 
         <SubHead>Lexical Environment</SubHead>
         <p>
@@ -111,7 +136,6 @@ class JsPage extends Component {
         <StyledSyntaxHighlighter language='javascript' style={tomorrow}>
           {code3}
         </StyledSyntaxHighlighter>
-
       </div>
     );
   }

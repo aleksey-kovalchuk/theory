@@ -32,6 +32,9 @@ class StartPage extends Component {
         <StyledLink to="/scss">Scss</StyledLink>
         <StyledLink to="/template">Шаблоны проектирования</StyledLink>
         <StyledLink to="/solid">SOLID</StyledLink>
+        <StyledLink to="/worker">Web workers</StyledLink>
+        <StyledLink to="/server">Server</StyledLink>
+        <StyledLink to="/api">API</StyledLink>
       </Wrap>
     );
   }
